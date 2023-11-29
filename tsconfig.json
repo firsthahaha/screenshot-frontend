@@ -9,6 +9,7 @@
     /* Bundler mode */
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "noImplicitAny": false,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { reactive, ref, toRefs } from "vue";
 import { postRequest, downloadRequest } from "./http/axios";
-import { saveAs } from 'file-saver';
 
 const formModel = reactive({
   returnType: "stream",
@@ -13,6 +12,7 @@ const formModel = reactive({
   extName:"png"
 });
 const loading = ref(false);
+const imgShow = ref(false)
 const waitOptions = ref([
   { value: "selector", label: "选择器" },
   // { value: "customVar", label: "自定义变量" },
@@ -47,11 +47,12 @@ const onSubmit = async () => {
     );
     imgUrl.value = res.Location;
   }else {
-    let res = await downloadRequest(
+    await downloadRequest(
       "http://127.0.0.1:5678/report/screenshot",
       result
     )
   }
+  imgShow.value = true
   loading.value = false;
 };
 </script>
@@ -148,7 +149,7 @@ const onSubmit = async () => {
       </el-form-item>
     </el-form>
     <el-image
-      v-if="formModel.returnType === 'ossFile'"
+      v-if="!imgShow && formModel.returnType === 'ossFile'"
       style="width: 100px; height: 100px"
       :zoom-rate="1.2"
       :max-scale="7"
