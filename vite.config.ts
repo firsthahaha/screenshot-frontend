@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
-  base: '/screen', 
+  base: '/', 
   plugins: [vue()],
   server: {
     port: 8080,
@@ -14,6 +14,6 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: 'dist/screen', 
+    outDir: 'dist/screen',
   }
 })
